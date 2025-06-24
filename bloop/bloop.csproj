@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>idunno.Bluesky.Bloop</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <SelfContained>true</SelfContained>
+    <ApplicationIcon>bloop.ico</ApplicationIcon>
+    <IsAotCompatible>true</IsAotCompatible>
+    <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Disable strongname warning as that's not been enforced since .net 5.-->
+    <!-- See https://github.com/dotnet/roslyn/issues/76197 -->
+    <NoWarn>$(NoWarn);CS8002</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="app\**" />
+    <EmbeddedResource Remove="app\**" />
+    <None Remove="app\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bloop.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="idunno.Bluesky" />
+    <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" />
+    <PackageReference Include="System.CommandLine" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Copyright>(c) 2025 Barry Dorrans</Copyright>
+    <AssemblyTitle>Bloop - a command line tool for posting to Bluesky.</AssemblyTitle>
+    <AssemblyName>bloop</AssemblyName>
+  </PropertyGroup>
+
+</Project>
