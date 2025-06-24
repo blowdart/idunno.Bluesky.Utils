@@ -100,19 +100,7 @@ namespace idunno.Bluesky.Bloop
 
             ParseResult parseResult = rootCommand.Parse(args);
 
-            if (!parseResult.Errors.Any())
-            {
-                return await parseResult.InvokeAsync().ConfigureAwait(false);
-            }
-            else
-            {
-                foreach (ParseError error in parseResult.Errors)
-                {
-                    ShowError(error.Message);
-                }
-
-                return -1;
-            }
+            return await parseResult.InvokeAsync().ConfigureAwait(false);
         }
 
         private static async Task<int> Bloop(

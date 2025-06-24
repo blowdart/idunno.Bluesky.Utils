@@ -1,8 +1,11 @@
 {
     "profiles": {
-        "Bloop": {
+        "Bloop \"update\"": {
             "commandName": "Project",
-            "commandLineArgs": "\"Bloop\""
+            "commandLineArgs": "\"update\""
+        },
+        "Bloop": {
+            "commandName": "Project"
         },
         "Bloop --version": {
             "commandName": "Project",
