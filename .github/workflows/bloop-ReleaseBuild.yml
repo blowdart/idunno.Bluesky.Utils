@@ -41,18 +41,18 @@ jobs:
 
     - name: 'Build x64'
       id: buildx64
-      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o app/x64 --property:PublicRelease=${{ inputs.public_release }}
+      run: dotnet publish bloop -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o bloop/app/x64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Build arm64'
       id: buildarm
-      run: dotnet publish -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o app/arm64 --property:PublicRelease=${{ inputs.public_release }}
+      run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o bloop/app/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: Upload Unsigned Artifacts
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: unsigned-executables
         path: |
-          app/**/bloop.exe
+          bloop/app/**/bloop.exe
         retention-days: 5
 
   sign:
@@ -60,7 +60,7 @@ jobs:
     needs: build
     runs-on: windows-latest
     if:  ${{ inputs.perform_sign }} 
-    environment: release
+    environment: codeSign
     permissions:
       contents: read
       id-token: write
