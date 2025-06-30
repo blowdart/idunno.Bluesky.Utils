@@ -25,6 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA
 		.github\dependabot.yml = .github\dependabot.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{08FD39EE-B784-4460-905B-345AA8D70BA8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\bloop-CIBuild.yml = .github\workflows\bloop-CIBuild.yml
+		.github\workflows\bloop-ReleaseBuild.yml = .github\workflows\bloop-ReleaseBuild.yml
+		.github\workflows\pr-CIBuild.yml = .github\workflows\pr-CIBuild.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +48,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{08FD39EE-B784-4460-905B-345AA8D70BA8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {665360F2-CFF6-4A5C-A998-E3DC1B8B9EFA}

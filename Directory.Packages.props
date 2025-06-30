@@ -4,11 +4,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.25" />
-    <PackageVersion Include="idunno.Bluesky" Version="0.9.2-prerelease" />
+    <PackageVersion Include="idunno.Bluesky" Version="0.9.5-prerelease" />
     <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.4" />
     <PackageVersion Include="Microsoft.CodeCoverage" Version="17.13.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageVersion Include="Microsoft.Sbom.Targets" Version="4.0.2" />
+    <PackageVersion Include="Microsoft.Windows.SDK.Contracts" Version="10.0.26100.4188" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.7.115" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta5.25306.1" />
   </ItemGroup>
