@@ -1,4 +1,4 @@
-name: bloop Push Build & Test
+name: bloop Release Build & Sign
 
 on:
   workflow_dispatch:
