@@ -1,4 +1,4 @@
-name: Pull Request Build & Test
+name: Repository Pull Request Build & Test
 
 on:
   workflow_dispatch:
