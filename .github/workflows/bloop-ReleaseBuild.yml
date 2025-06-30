@@ -40,11 +40,11 @@ jobs:
           9.0.x
 
     - name: 'Build x64'
-      id: build
+      id: buildx64
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o app/x64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Build arm64'
-      id: build
+      id: buildarm
       run: dotnet publish -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o app/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: Upload Unsigned Artifacts
