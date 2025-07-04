@@ -1,4 +1,4 @@
-name: bloop Push Build & Test
+name: bloop Build & Test
 
 on:
   workflow_dispatch:

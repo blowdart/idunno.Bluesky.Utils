@@ -1,4 +1,4 @@
-name: bloop Release Build & Sign
+name: bloop Build, Sign & Release
 
 on:
   workflow_dispatch:

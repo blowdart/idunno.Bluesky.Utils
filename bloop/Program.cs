@@ -133,7 +133,7 @@ namespace idunno.Bluesky.Bloop
                 }
             }
             else if (!string.IsNullOrEmpty(appPassword) && string.IsNullOrEmpty(handle))
-            {               
+            {
                 ShowError($"App password was specified but handle was not.");
                 return -4;
             }
