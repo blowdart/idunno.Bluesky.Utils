@@ -17,7 +17,7 @@ on:
         description: 'Release'
         type: boolean
         required: true
-        default: true
+        default: false
 
 env:
   DOTNET_NOLOGO: true
@@ -81,7 +81,7 @@ jobs:
       uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
 
     - name: 'Install Sign CLI'
-      run: dotnet tool install --tool-path ./sign sign --version 0.9.1-beta.25169.2
+      run: dotnet tool install --tool-path ./sign sign --version 0.9.1-beta.25278.1
 
     - name: 'Download build output'
       uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -105,7 +105,14 @@ jobs:
     - name: Sign
       shell: pwsh
       run: >
-        ./sign/sign code azure-key-vault bloop.exe --base-directory ${{ env.outputDirectory }} --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}" --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
+        ./sign/sign code azure-key-vault
+        **/bloop.exe
+        --base-directory ${{ env.outputDirectory }}
+        --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}"
+        --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
+        --publisher-name "idunno.org"
+        --description "Sign bloop.exe"
+        --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
 
     - name: Upload signed exes
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -116,6 +123,7 @@ jobs:
 
   release:
     name: Release app
+    needs: sign
     runs-on: ubuntu-latest
     permissions:
       contents: read
