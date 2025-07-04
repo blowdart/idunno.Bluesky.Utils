@@ -68,6 +68,14 @@ jobs:
       id: version-stamp
       run: echo version_stamp=$NBGV_SemVer2 >> "$GITHUB_OUTPUT"
 
+    - name: 'Rename executables to match architecture'
+      shell: pwsh
+      run : |
+        Get-ChildItem "app\" "*.exe" -Recurse |
+        foreach-object {
+            Rename-Item -Path $_.FullName "$($_.BaseName)-$($_.Directory.Name)$($_.Extension)"
+        }
+
     - name: Upload Unsigned Artifacts
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
@@ -98,11 +106,6 @@ jobs:
         name: unsigned-executables
         path : ${{ env.outputDirectory }}
 
-    - name: List assets to be signed
-      shell: pwsh
-      run: >
-        Get-ChildItem -Path ${{ env.outputDirectory }} -Include bloop.exe -Recurse -Force
-
     - name: Authenticate to Azure
       uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # 2.3.0
       with:
@@ -129,7 +132,6 @@ jobs:
         name: signed-artifacts
         path: |
           ${{ env.outputDirectory }}/**/bloop.exe
-          ${{ env.outputDirectory }}/version.env
         retention-days: 7
 
   release:
@@ -137,7 +139,10 @@ jobs:
     needs: [build, sign]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      packages: write
+    env:
+      tag: bloop-${{needs.build.outputs.version_stamp}}
 
     if: ${{ inputs.perform_release }} 
     steps:
@@ -154,5 +159,14 @@ jobs:
 
     - name: Stamping version
       run: |
-        echo "Stamping release as ${{needs.build.outputs.version_stamp}}
+        echo Stamping release as $tag
 
+    - name: Tag
+      uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72 # v1.7.2
+      with:
+        tag: $tag
+
+    - name: Release X64
+      uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 #v2.3.2
+      with:
+        files: ${{ env.outputDirectory }}
