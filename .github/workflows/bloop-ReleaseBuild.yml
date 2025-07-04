@@ -13,18 +13,24 @@ on:
         type: boolean
         required: true
         default: true
+      perform_release:
+        description: 'Release'
+        type: boolean
+        required: true
+        default: true
 
 env:
   DOTNET_NOLOGO: true
   DOTNET_GENERATE_ASPNET_CERTIFICATE: false
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  outputDirectory: ${{ github.workspace}}/app
 
 jobs:
   build:
     permissions:
       contents: read
 
-    name: Build Release
+    name: Build app
     runs-on: ubuntu-latest
 
     steps:
@@ -39,20 +45,26 @@ jobs:
         dotnet-version: | 
           9.0.x
 
+    - name: 'Configure versioning'
+      uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
+      with:
+        setAllVars: true
+    - run: echo "Version stamping as $NBGV_SemVer2"
+
     - name: 'Build x64'
       id: buildx64
-      run: dotnet publish bloop -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o bloop/app/x64 --property:PublicRelease=${{ inputs.public_release }}
+      run: dotnet publish bloop -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/x64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Build arm64'
       id: buildarm
-      run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o bloop/app/arm64 --property:PublicRelease=${{ inputs.public_release }}
+      run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: Upload Unsigned Artifacts
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: unsigned-executables
         path: |
-          bloop/app/**/bloop.exe
+          ${{ env.outputDirectory }}/**/bloop.exe
         retention-days: 5
 
   sign:
@@ -71,16 +83,16 @@ jobs:
     - name: 'Install Sign CLI'
       run: dotnet tool install --tool-path ./sign sign --version 0.9.1-beta.25169.2
 
-    - name: 'Gather nupkgs from build output'
+    - name: 'Download build output'
       uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: unsigned-executables
-        path : app
+        path : ${{ env.outputDirectory }}
 
     - name: List assets to be signed
       shell: pwsh
       run: >
-        Get-ChildItem -Path app -Include bloop.exe -Recurse -Force
+        Get-ChildItem -Path ${{ env.outputDirectory }} -Include bloop.exe -Recurse -Force
 
     - name: Authenticate to Azure
       uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # 2.3.0
@@ -93,11 +105,31 @@ jobs:
     - name: Sign
       shell: pwsh
       run: >
-        ./sign/sign code azure-key-vault bloop.exe --base-directory app --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}" --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
+        ./sign/sign code azure-key-vault bloop.exe --base-directory ${{ env.outputDirectory }} --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}" --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
 
     - name: Upload signed exes
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: signed-artifacts
-        path: app/**/bloop.exe
+        path: ${{ env.outputDirectory }}/**/bloop.exe
         retention-days: 7
+
+  release:
+    name: Release app
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    if:  ${{ inputs.perform_release }} 
+    steps:
+    - name: 'Download signing output'
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      with:
+        name: signed-artifacts
+        path : ${{ env.outputDirectory }}
+
+    - name: List assets to be published
+      shell: pwsh
+      run: >
+        Get-ChildItem -Path ${{ env.outputDirectory }} -Include bloop.exe -Recurse -Force
+

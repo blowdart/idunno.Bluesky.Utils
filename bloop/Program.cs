@@ -1,7 +1,6 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Help;
 using System.CommandLine.Invocation;
-using System.CommandLine.Parsing;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
@@ -20,8 +19,15 @@ namespace idunno.Bluesky.Bloop
 
             var statusArgument = new Argument<string>("status")
             {
-                Description = "What you are doing right now?"
+                Description = "What you are doing right now?",
             };
+            statusArgument.Validators.Add(result =>
+            {
+                if (string.IsNullOrEmpty(result.GetValue(statusArgument)))
+                {
+                    result.AddError("Must not be empty");
+                }
+            });
 
             var handleOption = new Option<string?>("--handle", "-l", "/l")
             {
@@ -97,7 +103,6 @@ namespace idunno.Bluesky.Bloop
                     cancellationToken);
             });
 
-
             ParseResult parseResult = rootCommand.Parse(args);
 
             return await parseResult.InvokeAsync().ConfigureAwait(false);
@@ -138,7 +143,7 @@ namespace idunno.Bluesky.Bloop
                 {
                     HttpClientOptions = new HttpClientOptions()
                     {
-                        HttpUserAgent = "bloop/1.0"
+                        HttpUserAgent = "bloop/1.1"
                     }
                 }))
             {
@@ -265,7 +270,6 @@ namespace idunno.Bluesky.Bloop
             Console.ForegroundColor = currentColor;
         }
     }
-
 
     internal sealed class CustomHelpAction(HelpAction action) : SynchronousCommandLineAction
     {

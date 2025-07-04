@@ -2,8 +2,11 @@
     "$schema": "https://raw.githubusercontent.com/AArnott/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
     "version": "1.1",
     "publicReleaseRefSpec": [
-        "^refs\/heads\/rel\/.*$"
+        "^refs/heads/main$"
     ],
+    "release": {
+        "tagName": "bloop/v{version}"
+    },
 
     "nugetPackageVersion": {
         "semVer": 2
