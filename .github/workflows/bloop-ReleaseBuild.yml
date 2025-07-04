@@ -158,12 +158,15 @@ jobs:
         name: version-information
 
     - name: Restore version information
-      run: >
+      run: |
         export $(grep -v '^#' version.env | xargs -d '\n')
-        echo "Versioning as $NBGV_SemVer2"
 
     - name: List assets to be published
       shell: pwsh
       run: >
         Get-ChildItem -Path ${{ env.outputDirectory }} -Include bloop.exe -Recurse -Force
+
+    - name: Display version stamp
+      run: |
+        echo "Stamping release as bloop-$NBGV_SemVer2"
 
