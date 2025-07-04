@@ -146,7 +146,7 @@ jobs:
 
     - name: Restore version information
       run: >
-        export $(grep -v '^#' version.env  | xargs -d '\n')
+        export $(grep -v '^#' ${{ env.outputDirectory }}/version.env  | xargs -d '\n')
         echo "Versioning as $NBGV_SemVer2"
 
     - name: List assets to be published
