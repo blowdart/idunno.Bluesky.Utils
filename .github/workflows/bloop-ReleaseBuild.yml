@@ -49,6 +49,7 @@ jobs:
       uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
       with:
         setAllVars: true
+        path: ./bloop
     - run: echo "Version stamping as $NBGV_SemVer2"
 
     - name: 'Build x64'
