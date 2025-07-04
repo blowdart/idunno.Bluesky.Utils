@@ -51,8 +51,7 @@ jobs:
         setAllVars: true
         path: ./bloop
     - run: |
-        echo "Versioning as $NBGV_SemVer2"
-        echo NBGV_SemVer2=$NBGV_SemVer2 > ${{ env.outputDirectory }}/version.env
+        echo "Stamping as v$NBGV_SemVer2"
 
     - name: 'Build x64'
       id: buildx64
@@ -61,6 +60,9 @@ jobs:
     - name: 'Build arm64'
       id: buildarm
       run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
+
+    - name: 'Save versioning environment'
+      run: echo NBGV_SemVer2=$NBGV_SemVer2 > ${{ env.outputDirectory }}/version.env
 
     - name: Upload Unsigned Artifacts
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
