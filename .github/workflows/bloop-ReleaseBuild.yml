@@ -61,7 +61,7 @@ jobs:
       id: buildarm
       run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
-    - name: 'Save versioning environment'
+    - name: 'Version Stamp'
       run: echo NBGV_SemVer2=$NBGV_SemVer2 > ${{ env.outputDirectory }}/version.env
 
     - name: Upload Unsigned Artifacts
@@ -70,8 +70,16 @@ jobs:
         name: unsigned-executables
         path: |
           ${{ env.outputDirectory }}/**/bloop.exe
+        retention-days: 5
+
+    - name: Upload Version Artifacts
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      with:
+        name: version-information
+        path: |
           ${{ env.outputDirectory }}/version.env
         retention-days: 5
+
 
   sign:
     name: Sign Release
@@ -144,9 +152,14 @@ jobs:
         name: signed-artifacts
         path : ${{ env.outputDirectory }}
 
+    - name: 'Download version information'
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      with:
+        name: version-information
+
     - name: Restore version information
       run: >
-        export $(grep -v '^#' ${{ env.outputDirectory }}/version.env  | xargs -d '\n')
+        export $(grep -v '^#' version.env | xargs -d '\n')
         echo "Versioning as $NBGV_SemVer2"
 
     - name: List assets to be published
