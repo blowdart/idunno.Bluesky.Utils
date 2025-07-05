@@ -142,7 +142,7 @@ jobs:
       contents: write
       packages: write
     env:
-      tag: bloop/${{needs.build.outputs.version_stamp}}
+      TAG: bloop/${{needs.build.outputs.version_stamp}}
 
     if: ${{ inputs.perform_release }} 
     steps:
@@ -162,11 +162,12 @@ jobs:
     - name: Tag Source
       uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72 # v1.7.2
       with:
-        tag: $tag
+        tag: ${{env.TAG}}
 
     - name: Create Release
       uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 #v2.3.2
       with:
         files: ${{ env.outputDirectory }}/**/bloop*.exe
-        tag_name: $tag
         make_latest: true
+        name: bloop v${{needs.build.outputs.version_stamp}}
+        tag_name: ${{env.TAG}}
