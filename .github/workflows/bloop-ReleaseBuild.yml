@@ -48,7 +48,7 @@ jobs:
         dotnet-version: | 
           9.0.x
 
-    - name: 'Configure versioning'
+    - name: 'Configure Versioning'
       uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
       with:
         setAllVars: true
@@ -68,7 +68,7 @@ jobs:
       id: version-stamp
       run: echo version_stamp=$NBGV_SemVer2 >> "$GITHUB_OUTPUT"
 
-    - name: 'Rename executables to match architecture'
+    - name: 'Rename exes for Architecture'
       shell: pwsh
       run : |
         Get-ChildItem "app\" "*.exe" -Recurse |
@@ -100,7 +100,7 @@ jobs:
     - name: 'Install Sign CLI'
       run: dotnet tool install --tool-path ./sign sign --version 0.9.1-beta.25278.1
 
-    - name: 'Download build output'
+    - name: 'Download Build Output'
       uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: unsigned-executables
@@ -126,12 +126,12 @@ jobs:
         --description "Sign bloop.exe"
         --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
 
-    - name: Upload signed exes
+    - name: Upload Signed exes
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: signed-artifacts
         path: |
-          ${{ env.outputDirectory }}/**/bloop.exe
+          ${{ env.outputDirectory }}/**/bloop*.exe
         retention-days: 7
 
   release:
@@ -146,27 +146,24 @@ jobs:
 
     if: ${{ inputs.perform_release }} 
     steps:
-    - name: 'Download signing output'
+    - name: 'Download Signed Artifacts'
       uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: signed-artifacts
         path : ${{ env.outputDirectory }}
 
-    - name: List assets to be published
-      shell: pwsh
-      run: >
-        Get-ChildItem -Path ${{ env.outputDirectory }} -Include bloop.exe -Recurse -Force
-
     - name: Stamping version
       run: |
         echo Stamping release as $tag
 
-    - name: Tag
+    - name: Tag Source
       uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72 # v1.7.2
       with:
         tag: $tag
 
-    - name: Release X64
+    - name: Create Release
       uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 #v2.3.2
       with:
-        files: ${{ env.outputDirectory }}
+        files: ${{ env.outputDirectory }}/**/bloop*.exe
+        tag_name: $tag
+        make_latest: true
