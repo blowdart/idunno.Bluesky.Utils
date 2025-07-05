@@ -164,10 +164,14 @@ jobs:
       with:
         tag: ${{env.TAG}}
 
+    - name: List artifacts
+      run : ls -R ${{ env.outputDirectory }}/*.exe
+
     - name: Create Release
       uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 #v2.3.2
       with:
-        files: ${{ env.outputDirectory }}/**/bloop*.exe
+        fail_on_unmatched_files: true
+        files: ${{ env.outputDirectory }}/**/*.exe
         make_latest: true
         name: bloop v${{needs.build.outputs.version_stamp}}
         tag_name: ${{env.TAG}}
