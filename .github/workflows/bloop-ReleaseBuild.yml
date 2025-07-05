@@ -118,7 +118,7 @@ jobs:
       shell: pwsh
       run: >
         ./sign/sign code azure-key-vault
-        **/bloop.exe
+        **/bloop*.exe
         --base-directory ${{ env.outputDirectory }}
         --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}"
         --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
