@@ -24,8 +24,4 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All"/>
-    <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="All"/>
-  </ItemGroup>
 </Project>
