@@ -30,15 +30,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\bloop-CIBuild.yml = .github\workflows\bloop-CIBuild.yml
 		.github\workflows\bloop-ReleaseBuild.yml = .github\workflows\bloop-ReleaseBuild.yml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\dependency-review.yml = .github\workflows\dependency-review.yml
 		.github\workflows\pr-CIBuild.yml = .github\workflows\pr-CIBuild.yml
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CodeQL|Any CPU = CodeQL|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C77B795-952D-AF05-D946-325C50B1270E}.CodeQL|Any CPU.ActiveCfg = CodeQL|Any CPU
+		{8C77B795-952D-AF05-D946-325C50B1270E}.CodeQL|Any CPU.Build.0 = CodeQL|Any CPU
 		{8C77B795-952D-AF05-D946-325C50B1270E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C77B795-952D-AF05-D946-325C50B1270E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C77B795-952D-AF05-D946-325C50B1270E}.Release|Any CPU.ActiveCfg = Release|Any CPU

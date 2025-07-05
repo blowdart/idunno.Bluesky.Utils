@@ -13,6 +13,7 @@
     <ApplicationIcon>bloop.ico</ApplicationIcon>
     <IsAotCompatible>true</IsAotCompatible>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+    <Configurations>Debug;Release;CodeQL</Configurations>
   </PropertyGroup>
 
   <PropertyGroup>
