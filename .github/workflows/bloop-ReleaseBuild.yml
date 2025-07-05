@@ -81,7 +81,7 @@ jobs:
       with:
         name: unsigned-executables
         path: |
-          ${{ env.outputDirectory }}/**/bloop.exe
+          ${{ env.outputDirectory }}/**/bloop*.exe
         retention-days: 5
 
   sign:
