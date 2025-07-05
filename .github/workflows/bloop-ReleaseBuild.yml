@@ -146,12 +146,6 @@ jobs:
 
     if: ${{ inputs.perform_release }} 
     steps:
-    - name: 'Download Signed Artifacts'
-      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-      with:
-        name: signed-artifacts
-        path : ${{ env.outputDirectory }}
-
     - name: Stamping version
       run: |
         echo Stamping release as $tag
@@ -163,6 +157,15 @@ jobs:
       uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72 # v1.7.2
       with:
         tag: ${{env.TAG}}
+
+    - name: List artifacts
+      run : ls -R ${{ github.workspace}}
+
+    - name: 'Download Signed Artifacts'
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      with:
+        name: signed-artifacts
+        path : ${{ env.outputDirectory }}
 
     - name: List artifacts
       run : ls -R ${{ github.workspace}}
