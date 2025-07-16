@@ -24,8 +24,8 @@
       </PropertyGroup>
 
       <ItemGroup>
-        <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All"/>
-        <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="All"/>
+        <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
+        <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="All" />
       </ItemGroup>
     </When>
   </Choose>
@@ -49,6 +49,7 @@
   <ItemGroup>
     <PackageReference Include="idunno.Bluesky" />
     <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" />
+    <PackageReference Include="Microsoft.NET.ILLink.Tasks" />
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>
 
