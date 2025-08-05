@@ -49,6 +49,7 @@
   <ItemGroup>
     <PackageReference Include="idunno.Bluesky" />
     <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" />
+  <PackageReference Include="Microsoft.NET.ILLink.Tasks" />
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>
 
