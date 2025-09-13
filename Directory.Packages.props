@@ -10,6 +10,6 @@
     <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="9.0.9" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.7.115" />
-    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta7.25380.108" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-rc.1.25451.107" />
   </ItemGroup>
 </Project>
