@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.25" />
+    <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.39" />
     <PackageVersion Include="idunno.Bluesky" Version="1.0.0" />
     <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.6" />
     <PackageVersion Include="Microsoft.CodeCoverage" Version="17.14.1" />
