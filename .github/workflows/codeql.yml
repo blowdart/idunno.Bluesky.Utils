@@ -31,9 +31,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'csharp' ]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Learn more about CodeQL language support at https://git.io/codeql-language-support
+        include:
+          - language: 'csharp'
+            buildmode : 'manual'
+          - language: 'actions'
+            buildmode: 'none'
 
     steps:
     - name: Harden Runner
