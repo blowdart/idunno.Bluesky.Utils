@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.39" />
     <PackageVersion Include="idunno.Bluesky" Version="1.1.0" />
-    <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.8" />
+    <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.10" />
     <PackageVersion Include="Microsoft.CodeCoverage" Version="17.14.1" />
     <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="9.0.10" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
