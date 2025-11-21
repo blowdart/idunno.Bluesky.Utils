@@ -127,7 +127,6 @@ jobs:
         --base-directory ${{ env.outputDirectory }}
         --azure-key-vault-url "${{ secrets.AZURE_KEY_VAULT_URL }}"
         --azure-key-vault-certificate "${{ secrets.AZURE_KEY_VAULT_CERTIFICATE }}"
-        --azure-credential-type "managed-identity"
         --publisher-name "idunno.org"
         --description "Sign bloop.exe"
         --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
