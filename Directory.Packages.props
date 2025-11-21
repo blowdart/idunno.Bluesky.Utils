@@ -6,9 +6,8 @@
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.39" />
     <PackageVersion Include="idunno.Bluesky" Version="1.1.0" />
     <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.11" />
-    <PackageVersion Include="Microsoft.CodeCoverage" Version="17.14.1" />
-    <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="9.0.11" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="Microsoft.CodeCoverage" Version="18.0.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.9.50" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0" />
   </ItemGroup>

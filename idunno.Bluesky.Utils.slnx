@@ -1,0 +1,32 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="CodeQL" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="exclusion.dic" />
+    <File Path="key.snk" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="SECURITY.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/">
+    <File Path=".github/CODEOWNERS" />
+    <File Path=".github/dependabot.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/workflows/">
+    <File Path=".github/workflows/bloop-CIBuild.yml" />
+    <File Path=".github/workflows/bloop-ReleaseBuild.yml" />
+    <File Path=".github/workflows/codeql.yml" />
+    <File Path=".github/workflows/dependency-review.yml" />
+    <File Path=".github/workflows/pr-CIBuild.yml" />
+  </Folder>
+  <Project Path="bloop/bloop.csproj" />
+</Solution>

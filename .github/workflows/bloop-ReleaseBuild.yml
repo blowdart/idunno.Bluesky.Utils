@@ -51,7 +51,7 @@ jobs:
       uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
       with:
         dotnet-version: | 
-          9.0.x
+          10.0.x
 
     - name: 'Configure Versioning'
       uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2

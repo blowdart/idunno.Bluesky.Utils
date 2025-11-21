@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>idunno.Bluesky.Bloop</RootNamespace>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -12,6 +12,12 @@
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
     <Configurations>Debug;Release;CodeQL</Configurations>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Disable strongname warning as that's not been enforced since .net 5.-->
+    <!-- See https://github.com/dotnet/roslyn/issues/76197 -->
+    <NoWarn>$(NoWarn);CS8002</NoWarn>
+  </PropertyGroup>  
 
   <Choose>
     <When Condition="'$(Configuration)' != 'CodeQL'">
@@ -30,12 +36,6 @@
     </When>
   </Choose>
 
-  <PropertyGroup>
-    <!-- Disable strongname warning as that's not been enforced since .net 5.-->
-    <!-- See https://github.com/dotnet/roslyn/issues/76197 -->
-    <NoWarn>$(NoWarn);CS8002</NoWarn>
-  </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="app\**" />
     <EmbeddedResource Remove="app\**" />
@@ -49,7 +49,6 @@
   <ItemGroup>
     <PackageReference Include="idunno.Bluesky" />
     <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" />
-  <PackageReference Include="Microsoft.NET.ILLink.Tasks" />
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>
 
