@@ -99,6 +99,9 @@ jobs:
       contents: read
       id-token: write
     steps:
+    - name: 'Get .NET installed versions'
+      run: dotnet --info
+
     - name: 'Setup .NET SDK'
       uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
 
