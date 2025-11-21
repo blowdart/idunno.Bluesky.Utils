@@ -103,7 +103,7 @@ jobs:
       uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
 
     - name: 'Install Sign CLI'
-      run: dotnet tool install --tool-path ./sign sign --version 0.9.1-beta.25278.1
+      run: dotnet tool install --tool-path ./sign sign --version v0.9.1-beta.25379.1
 
     - name: 'Download Build Output'
       uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
