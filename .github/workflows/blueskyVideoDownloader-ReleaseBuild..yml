@@ -53,8 +53,6 @@ jobs:
       with:
         setAllVars: true
         path: ./BlueskyVideoDownloader
-    - run: |
-        echo "Stamping as v${env:NBGV_SemVer2}"
 
     - name: 'Build windows-x64'
       id: buildx64
