@@ -1,4 +1,4 @@
-name: bloop Build, Sign & Release
+﻿name: bloop Build, Sign & Release
 
 on:
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
       contents: read
 
     name: Build app
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     outputs:
       version_stamp: ${{ steps.version-stamp.outputs.version_stamp }}
