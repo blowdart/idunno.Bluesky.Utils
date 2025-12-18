@@ -67,7 +67,7 @@ jobs:
 
     - name: 'Build windows-arm64'
       id: buildarm
-      run: dotnet publish BSlueskyVideoDownloader -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
+      run: dotnet publish BlueskyVideoDownloader -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Set Version Stamp'
       id: version-stamp
