@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>idunno.Bluesky.VideoDownloader</RootNamespace>
     <OutputType>Exe</OutputType>
+    <ApplicationIcon>BlueskyVideoDownloader.ico</ApplicationIcon>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
