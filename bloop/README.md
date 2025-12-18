@@ -23,7 +23,7 @@ Running
 Clear-History -Count 1 -newest
 ```
 
-immediately after saving your credentials will remove the command, and your credentialsfrom your PowerShell history.
+immediately after saving your credentials will remove the command, and your credentials from your PowerShell history.
 
 You can then continue using bloop without specifying the handle or app password.
 
