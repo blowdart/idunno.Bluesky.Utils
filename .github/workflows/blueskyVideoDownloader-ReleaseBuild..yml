@@ -30,8 +30,8 @@ jobs:
     permissions:
       contents: read
 
-    name: Build app
-    runs-on: ubuntu-latest
+    name: Build Windows app
+    runs-on: windows
 
     outputs:
       version_stamp: ${{ steps.version-stamp.outputs.version_stamp }}
@@ -68,10 +68,6 @@ jobs:
     - name: 'Build windows-arm64'
       id: buildarm
       run: dotnet publish BSlueskyVideoDownloader -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
-
-    - name: 'Build linux-x64'
-      id: buildlinux64
-      run: dotnet publish BSlueskyVideoDownloader -c Release -r linux-x64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/linux-x64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Set Version Stamp'
       id: version-stamp
@@ -141,7 +137,6 @@ jobs:
         name: signed-artifacts
         path: |
           ${{ env.outputDirectory }}/**/BlueskyVideoDownloader*.exe
-          ${{ env.outputDirectory }}/linux-x64/BlueskyVideoDownloader
         retention-days: 7
 
   release:
@@ -186,7 +181,6 @@ jobs:
         fail_on_unmatched_files: true
         files: |
           ${{ env.outputDirectory }}/**/*.exe
-          ${{ env.outputDirectory }}/linux-*/BlueskyVideoDownloader
         make_latest: true
         name: BlueskyVideoDownloader v${{needs.build.outputs.version_stamp}}
         tag_name: ${{env.TAG}}
