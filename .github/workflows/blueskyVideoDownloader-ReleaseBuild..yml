@@ -37,11 +37,6 @@ jobs:
       version_stamp: ${{ steps.version-stamp.outputs.version_stamp }}
 
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
-      with:
-        egress-policy: audit
-
     - name: 'Checkout'
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
@@ -59,7 +54,7 @@ jobs:
         setAllVars: true
         path: ./BlueskyVideoDownloader
     - run: |
-        echo "Stamping as v$NBGV_SemVer2"
+        echo "Stamping as v${env:NBGV_SemVer2}"
 
     - name: 'Build windows-x64'
       id: buildx64
@@ -71,7 +66,7 @@ jobs:
 
     - name: 'Set Version Stamp'
       id: version-stamp
-      run: echo version_stamp=$NBGV_SemVer2 >> "$GITHUB_OUTPUT"
+      run: echo version_stamp=${env:NBGV_SemVer2} >> "$GITHUB_OUTPUT"
 
     - name: 'Rename Windows exes for Architecture'
       shell: pwsh
