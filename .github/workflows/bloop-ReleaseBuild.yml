@@ -59,7 +59,7 @@ jobs:
         setAllVars: true
         path: ./bloop
     - run: |
-        echo "Stamping as v$NBGV_SemVer2"
+        echo "Stamping as v{env:$NBGV_SemVer2}"
 
     - name: 'Build x64'
       id: buildx64
@@ -71,7 +71,7 @@ jobs:
 
     - name: 'Set Version Stamp'
       id: version-stamp
-      run: echo version_stamp=$NBGV_SemVer2 >> "$GITHUB_OUTPUT"
+      run: echo version_stamp=$env:NBGV_SemVer2 >> $env:GITHUB_OUTPUT
 
     - name: 'Rename exes for Architecture'
       shell: pwsh
