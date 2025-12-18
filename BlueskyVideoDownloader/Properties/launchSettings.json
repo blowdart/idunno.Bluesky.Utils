@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BlueskyVideoDownloader": {
+      "commandName": "Project",
+      "commandLineArgs": "https://bsky.app/profile/blowdart.me/post/3l5q7ujtvde23 --output:G:\\scratch --force",
+      "hotReloadEnabled": false
+    }
+  }
+}

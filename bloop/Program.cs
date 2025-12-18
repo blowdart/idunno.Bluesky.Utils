@@ -1,4 +1,7 @@
-﻿using System.CommandLine;
+﻿// Copyright (c) Barry Dorrans. All rights reserved.
+// Licensed under the MIT License.
+
+using System.CommandLine;
 using System.CommandLine.Help;
 using System.CommandLine.Invocation;
 using System.Diagnostics.CodeAnalysis;
@@ -21,6 +24,7 @@ namespace idunno.Bluesky.Bloop
             {
                 Description = "What you are doing right now?",
             };
+
             statusArgument.Validators.Add(result =>
             {
                 if (string.IsNullOrEmpty(result.GetValue(statusArgument)))

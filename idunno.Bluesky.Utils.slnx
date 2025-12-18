@@ -24,9 +24,14 @@
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/bloop-CIBuild.yml" />
     <File Path=".github/workflows/bloop-ReleaseBuild.yml" />
+    <File Path=".github/workflows/blueskyVideoDownloader-CIBuild.yml" />
+    <File Path=".github/workflows/blueskyVideoDownloader-ReleaseBuild..yml" />
     <File Path=".github/workflows/codeql.yml" />
     <File Path=".github/workflows/dependency-review.yml" />
     <File Path=".github/workflows/pr-CIBuild.yml" />
   </Folder>
   <Project Path="bloop/bloop.csproj" />
+  <Project Path="BlueskyVideoDownloader/BlueskyVideoDownloader.csproj" Id="b2c6c49d-1f07-4205-936a-c989dea1632a">
+    <BuildType Solution="CodeQL|*" Project="Debug" />
+  </Project>
 </Solution>

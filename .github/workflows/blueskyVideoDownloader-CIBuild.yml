@@ -1,4 +1,4 @@
-﻿name: bloop Build & Test
+﻿name: blueskyVideoDownloader Build & Test
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'bloop'
+      - 'blueskyVideoDownloader'
 
 permissions:
   contents: read
@@ -44,11 +44,11 @@ jobs:
 
     - name: 'Build'
       id: build
-      run: dotnet build bloop --configuration Debug --no-restore
+      run: dotnet build BlueskyVideoDownloader --configuration Debug --no-restore
 
     - name: 'Test'
       id: test
-      run: dotnet test bloop --no-build --restore --collect:"XPlat Code Coverage" --logger junit
+      run: dotnet test BlueskyVideoDownloader --no-build --restore --collect:"XPlat Code Coverage" --logger junit
 
     - name: 'Create test summary'
       uses: test-summary/action@31493c76ec9e7aa675f1585d3ed6f1da69269a86 # v2.4
@@ -62,5 +62,5 @@ jobs:
       with:
         name: build-artifacts
         path: |
-          bloop/bin/**
+          BlueskyVideoDownloader/bin/**
         retention-days: 5
