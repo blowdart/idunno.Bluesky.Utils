@@ -58,8 +58,6 @@ jobs:
       with:
         setAllVars: true
         path: ./bloop
-    - run: |
-        echo "Stamping as v{env:$NBGV_SemVer2}"
 
     - name: 'Build x64'
       id: buildx64
@@ -69,9 +67,9 @@ jobs:
       id: buildarm
       run: dotnet publish bloop -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
 
-    - name: 'Set Version Stamp'
+    - name: 'Append Version Stamp to build output'
       id: version-stamp
-      run: echo version_stamp=$env:NBGV_SemVer2 >> $env:GITHUB_OUTPUT
+      run: echo version_stamp=$env:NBGV_SemVer2 | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
     - name: 'Rename exes for Architecture'
       shell: pwsh
