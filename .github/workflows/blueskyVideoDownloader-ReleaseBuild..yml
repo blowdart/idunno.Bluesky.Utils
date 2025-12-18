@@ -61,19 +61,23 @@ jobs:
     - run: |
         echo "Stamping as v$NBGV_SemVer2"
 
-    - name: 'Build x64'
+    - name: 'Build windows-x64'
       id: buildx64
       run: dotnet publish BlueskyVideoDownloader -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/x64 --property:PublicRelease=${{ inputs.public_release }}
 
-    - name: 'Build arm64'
+    - name: 'Build windows-arm64'
       id: buildarm
       run: dotnet publish BSlueskyVideoDownloader -c Release -r win-arm64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/arm64 --property:PublicRelease=${{ inputs.public_release }}
+
+    - name: 'Build linux-x64'
+      id: buildlinux64
+      run: dotnet publish BSlueskyVideoDownloader -c Release -r linux-x64 -p:PublishSingleFile=true --self-contained true -o ${{ env.outputDirectory }}/linux-x64 --property:PublicRelease=${{ inputs.public_release }}
 
     - name: 'Set Version Stamp'
       id: version-stamp
       run: echo version_stamp=$NBGV_SemVer2 >> "$GITHUB_OUTPUT"
 
-    - name: 'Rename exes for Architecture'
+    - name: 'Rename Windows exes for Architecture'
       shell: pwsh
       run : |
         Get-ChildItem "app\" "*.exe" -Recurse |
@@ -86,7 +90,7 @@ jobs:
       with:
         name: unsigned-executables
         path: |
-          ${{ env.outputDirectory }}/**/BlueskyVideoDownloader*.exe
+          ${{ env.outputDirectory }}/**/*
         retention-days: 5
 
   sign:
@@ -131,12 +135,13 @@ jobs:
         --description "Sign BlueskyVideoDownloader.exe"
         --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
 
-    - name: Upload Signed exes
+    - name: Upload Signed Artifacts
       uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
       with:
         name: signed-artifacts
         path: |
           ${{ env.outputDirectory }}/**/BlueskyVideoDownloader*.exe
+          ${{ env.outputDirectory }}/linux-x64/BlueskyVideoDownloader
         retention-days: 7
 
   release:
@@ -179,7 +184,9 @@ jobs:
       uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b #v2.5.0
       with:
         fail_on_unmatched_files: true
-        files: ${{ env.outputDirectory }}/**/*.exe
+        files: |
+          ${{ env.outputDirectory }}/**/*.exe
+          ${{ env.outputDirectory }}/linux-*/BlueskyVideoDownloader
         make_latest: true
         name: BlueskyVideoDownloader v${{needs.build.outputs.version_stamp}}
         tag_name: ${{env.TAG}}
