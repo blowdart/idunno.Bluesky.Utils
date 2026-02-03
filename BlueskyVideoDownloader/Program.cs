@@ -189,7 +189,7 @@ namespace idunno.Bluesky.VideoDownloader
                     return -5;
                 }
 
-                if (string.IsNullOrEmpty(video.Video.Reference.Link))
+                if (video.Video.Reference.Link is null)
                 {
                     Console.WriteLine("Video URI could not be determined.");
                     return -6;
