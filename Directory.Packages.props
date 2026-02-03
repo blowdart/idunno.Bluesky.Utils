@@ -6,7 +6,7 @@
     <PackageVersion Include="ConsoleSpinner" Version="3.0.1" />
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="2.0.2" />
     <PackageVersion Include="idunno.AtProto" Version="1.1.0" />
-    <PackageVersion Include="idunno.Bluesky" Version="1.4.0" />
+    <PackageVersion Include="idunno.Bluesky" Version="1.5.0" />
     <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.17" />
     <PackageVersion Include="Microsoft.CodeCoverage" Version="18.0.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
