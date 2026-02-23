@@ -49,7 +49,7 @@ jobs:
           10.0.x
 
     - name: 'Configure Versioning'
-      uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
+      uses: dotnet/nbgv@003d9dfa55a970aa99e75974876dcbe0ca665513 # v0.5.0
       with:
         setAllVars: true
         path: ./bloop
