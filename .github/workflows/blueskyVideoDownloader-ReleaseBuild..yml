@@ -49,7 +49,7 @@ jobs:
           10.0.x
 
     - name: 'Configure Versioning'
-      uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
+      uses: dotnet/nbgv@3cf2d96c2aa00675081b59f401356ac1fb81092f # v0.5.1
       with:
         setAllVars: true
         path: ./BlueskyVideoDownloader
