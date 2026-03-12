@@ -43,13 +43,13 @@ jobs:
         fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
  
     - name: 'Setup .NET SDK'
-      uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
+      uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
       with:
         dotnet-version: | 
           10.0.x
 
     - name: 'Configure Versioning'
-      uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
+      uses: dotnet/nbgv@3cf2d96c2aa00675081b59f401356ac1fb81092f # v0.5.1
       with:
         setAllVars: true
         path: ./BlueskyVideoDownloader
@@ -75,7 +75,7 @@ jobs:
         }
 
     - name: Upload Unsigned Artifacts
-      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
       with:
         name: unsigned-executables
         path: |
@@ -99,7 +99,7 @@ jobs:
       run: dotnet tool install --tool-path ./sign --prerelease sign
 
     - name: 'Download Build Output'
-      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: unsigned-executables
         path : ${{ env.outputDirectory }}
@@ -125,7 +125,7 @@ jobs:
         --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
 
     - name: Upload Signed Artifacts
-      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
       with:
         name: signed-artifacts
         path: |
@@ -146,7 +146,7 @@ jobs:
     steps:
 
     - name: Harden Runner
-      uses: step-security/harden-runner@e3f713f2d8f53843e71c69a996d56f51aa9adfb9 # v2.14.1
+      uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
       with:
         egress-policy: audit
 
@@ -163,7 +163,7 @@ jobs:
         tag: ${{env.TAG}}
 
     - name: 'Download Signed Artifacts'
-      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: signed-artifacts
         path : ${{ env.outputDirectory }}
