@@ -49,6 +49,7 @@
   <ItemGroup>
     <PackageReference Include="ConsoleSpinner" />
     <PackageReference Include="idunno.Bluesky" />
+  <PackageReference Include="OpenTelemetry.Api" />
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>
 
