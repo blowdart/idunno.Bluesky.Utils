@@ -75,7 +75,7 @@ jobs:
         }
 
     - name: Upload Unsigned Artifacts
-      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: unsigned-executables
         path: |
@@ -105,7 +105,7 @@ jobs:
         path : ${{ env.outputDirectory }}
 
     - name: Authenticate to Azure
-      uses: azure/login@532459ea530d8321f2fb9bb10d1e0bcf23869a43 # 3.0.0
+      uses: azure/login@532459ea530d8321f2fb9bb10d1e0bcf23869a43 # v3.0.0
       with:
         allow-no-subscriptions : true
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -125,7 +125,7 @@ jobs:
         --description-url "https://github.com/blowdart/idunno.Bluesky.Utils"
 
     - name: Upload Signed exes
-      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: signed-artifacts
         path: |
@@ -146,7 +146,7 @@ jobs:
     steps:
 
     - name: Harden Runner
-      uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+      uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
       with:
         egress-policy: audit
 
@@ -169,7 +169,7 @@ jobs:
         path : ${{ env.outputDirectory }}
 
     - name: Create Release
-      uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe #v2.6.1
+      uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda #v3.0.0
       with:
         fail_on_unmatched_files: true
         files: ${{ env.outputDirectory }}/**/*.exe
