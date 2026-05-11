@@ -51,7 +51,7 @@ jobs:
       run: dotnet test bloop --no-build --restore --collect:"XPlat Code Coverage" --logger junit
 
     - name: 'Create test summary'
-      uses: test-summary/action@001f872f7d3bfc266130826cdd8c4b9ca30b15c3 # v2.5
+      uses: test-summary/action@37b508cfee6d4d080eedd00b5bb240a6a784a6a5 # v2.6
       with:
         paths: test/**/TestResults.xml
         show: "fail, skip"
