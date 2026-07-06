@@ -7,7 +7,7 @@
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="2.0.5" />
     <PackageVersion Include="idunno.AtProto" Version="1.7.0" />
     <PackageVersion Include="idunno.Bluesky" Version="2.0.0" />
-    <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="2.0.2" />
+    <PackageVersion Include="Meziantou.Framework.Win32.CredentialManager" Version="3.0.0" />
     <PackageVersion Include="Microsoft.CodeCoverage" Version="18.4.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.10.85" />
