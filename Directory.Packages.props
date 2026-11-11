@@ -12,5 +12,6 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.10.94" />
     <PackageVersion Include="System.CommandLine" Version="2.0.14" />
+    <PackageVersion Include="System.Formats.Cbor" Version="10.0.15" />
   </ItemGroup>
 </Project>

@@ -50,6 +50,7 @@
     <PackageReference Include="ConsoleSpinner" />
     <PackageReference Include="idunno.Bluesky" />
     <PackageReference Include="System.CommandLine" />
+    <PackageReference Include="System.Formats.Cbor" />
   </ItemGroup>
 
   <PropertyGroup>

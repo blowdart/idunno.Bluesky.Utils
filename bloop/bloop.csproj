@@ -50,6 +50,7 @@
     <PackageReference Include="idunno.Bluesky" />
     <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" />
     <PackageReference Include="System.CommandLine" />
+    <PackageReference Include="System.Formats.Cbor" />
   </ItemGroup>
 
   <PropertyGroup>
